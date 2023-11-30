@@ -1,4 +1,5 @@
-import { formatDate } from "@/lib/utils";
+import useSWR from "swr";
+import UserCard from "./UserCard";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -11,27 +12,23 @@ const fetcher = async (url) => {
   return res.json();
 };
 
-export default function userDetail() {
-  const router = useRouter();
-  const { userId } = router.query;
-
-  const {
-    data: user,
-    error,
-    isLoading,
-  } = useSWR(`/api/users${userId}`, fetcher);
+export default function UserList() {
+  const { data: users, error, isLoading } = useSWR("/api/users", fetcher);
 
   if (error) return <p>{error.message}</p>;
   if (isLoading) return <p>loading...</p>;
 
-  if (!user) {
+  if (!users) {
     return <div>loading...</div>;
   }
 
   return (
     <>
-      <UserCard user={user} />
-      <Link href="/">Back to all</Link>
+      <ul>
+        {users.map((user) => (
+          <UserCard key={`user-${user.id}`} user={user} />
+        ))}
+      </ul>
     </>
   );
 }
