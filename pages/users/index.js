@@ -1,4 +1,4 @@
-import UserList from "@/componants/UserList";
+import UserList from "@/components/UserList";
 
 export default function userOverview() {
   return (

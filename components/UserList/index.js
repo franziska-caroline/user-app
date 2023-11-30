@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import UserCard from "./UserCard";
+import UserCard from "../UserCard/index.js.js";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -19,7 +19,7 @@ export default function UserList() {
   if (isLoading) return <p>loading...</p>;
 
   if (!users) {
-    return <div>loading...</div>;
+    return <div>loading...</div>
   }
 
   return (
