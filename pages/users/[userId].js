@@ -11,7 +11,7 @@ const fetcher = async (url) => {
   return res.json();
 };
 
-export default function userDetail() {
+export default function userDetail({ user }) {
   const router = useRouter();
   const { userId } = router.query;
 

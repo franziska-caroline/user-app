@@ -1,14 +1,9 @@
-export default function Layout() {
+import Navigation from "../Navigation";
+
+export default function Layout({ children }) {
   return (
     <>
-      <main>
-        <Image
-          scr="./assets/backgroundImage"
-          alt="mountain"
-          height="300"
-          width="auto"
-        />
-      </main>
+      <main>{children}</main>
       <Navigation />
     </>
   );
