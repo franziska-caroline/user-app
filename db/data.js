@@ -1,4 +1,4 @@
-const users = [
+export const users = [
   {
     id: "1",
     firstName: "Jonas",
@@ -40,11 +40,3 @@ const users = [
     createdAt: new Date("2023-11-30"),
   },
 ];
-
-export function getAllUsers() {
-  return users;
-}
-
-export function getUserById(id) {
-  return users.find((user) => user.id === id);
-}
