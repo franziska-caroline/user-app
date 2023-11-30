@@ -5,11 +5,15 @@ export default function UserList({ users }) {
   return (
     <>
       <ul>
-        <li>
-          <Link href={`/users/${users.id}`}>
-            {users.firstName} {users.lastName}
-          </Link>
-        </li>
+        {users.map((user) => {
+          return (
+            <li>
+              <Link href={`/users/${user.id}`}>
+                {user.firstName} {user.lastName}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </>
   );

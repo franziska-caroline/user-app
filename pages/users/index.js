@@ -19,6 +19,8 @@ export default function userOverview() {
   if (error) return <p>{error.message}</p>;
   if (isLoading) return <p>loading...</p>;
 
+  console.log(users);
+
   if (!users) {
     return <div>loading...</div>;
   }

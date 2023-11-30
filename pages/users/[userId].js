@@ -1,6 +1,7 @@
-import { formatDate } from "@/lib/utils";
+import { useRouter } from "next/router";
+import useSWR from "swr";
 
-const fetcher = async (url) => {
+/* const fetcher = async (url) => {
   const res = await fetch(url);
   if (!res.ok) {
     const error = new Error("An error occurred while fetching the data.");
@@ -10,11 +11,13 @@ const fetcher = async (url) => {
   }
   return res.json();
 };
+*/
 
-export default function userDetail({ user }) {
+export default function userDetail({ users }) {
   const router = useRouter();
   const { userId } = router.query;
 
+  /*
   const {
     data: user,
     error,
@@ -23,14 +26,18 @@ export default function userDetail({ user }) {
 
   if (error) return <p>{error.message}</p>;
   if (isLoading) return <p>loading...</p>;
+  */
 
-  if (!user) {
+  const selectedUser = users.find((user) => user.id === userId);
+  console.log(selectedUser);
+
+  if (!selectedUser) {
     return <div>loading...</div>;
   }
 
   return (
     <>
-      <UserCard user={user} />
+      <UserCard selectedUser={selectedUser} />
       <Link href="/">Back to all</Link>
     </>
   );

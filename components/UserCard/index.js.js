@@ -1,15 +1,15 @@
 import { formatDate } from "@/lib/utils";
 
-export default function UserCard({ user }) {
+export default function UserCard({ selectedUser }) {
   return (
     <>
       <h1>
-        {user.firstName}
-        {user.lastName}
+        {selectedUser.firstName}
+        {selectedUser.lastName}
       </h1>
-      <p>email:{user.email}</p>
-      <p>age:{user.age}</p>
-      <p>member: {formatDate(user.createdAt)} </p>
+      <p>email:{selectedUser.email}</p>
+      <p>age:{selectedUser.age}</p>
+      <p>member: {formatDate(selectedUser.createdAt)} </p>
     </>
   );
 }
