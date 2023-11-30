@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import UserCard from "./UserCard";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -24,9 +25,9 @@ export default function UserList() {
   return (
     <>
       <ul>
-        {users.map((user) => {
-          return <li>{`${user.firstName} ${user.lastName}`}</li>;
-        })}
+        {users.map((user) => (
+          <UserCard key={`user-${user.id}`} user={user} />
+        ))}
       </ul>
     </>
   );
