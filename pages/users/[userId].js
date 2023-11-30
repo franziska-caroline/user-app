@@ -1,4 +1,7 @@
-import { formatDate } from "@/lib/utils";
+import { useRouter } from "next/router";
+import useSWR from "swr";
+import UserCard from "@/components/UserCard/index.js";
+import Link from "next/link";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -19,7 +22,7 @@ export default function userDetail() {
     data: user,
     error,
     isLoading,
-  } = useSWR(`/api/users${userId}`, fetcher);
+  } = useSWR(`/api/users/${userId}`, fetcher);
 
   if (error) return <p>{error.message}</p>;
   if (isLoading) return <p>loading...</p>;
@@ -27,11 +30,10 @@ export default function userDetail() {
   if (!user) {
     return <div>loading...</div>;
   }
-
   return (
     <>
-      <UserCard user={user} />
-      <Link href="/">Back to all</Link>
+      <UserCard selectedUser={user} />
+      <Link href="/users">Back to all</Link>
     </>
   );
 }
