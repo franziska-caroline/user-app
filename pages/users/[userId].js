@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import UserCard from "@/components/UserCard/index.js";
+import Link from "next/link";
 
-/* const fetcher = async (url) => {
+const fetcher = async (url) => {
   const res = await fetch(url);
   if (!res.ok) {
     const error = new Error("An error occurred while fetching the data.");
@@ -11,34 +13,27 @@ import useSWR from "swr";
   }
   return res.json();
 };
-*/
 
-export default function userDetail({ users }) {
+export default function userDetail() {
   const router = useRouter();
   const { userId } = router.query;
 
-  /*
   const {
     data: user,
     error,
     isLoading,
-  } = useSWR(`/api/users${userId}`, fetcher);
+  } = useSWR(`/api/users/${userId}`, fetcher);
 
   if (error) return <p>{error.message}</p>;
   if (isLoading) return <p>loading...</p>;
-  */
 
-  const selectedUser = users.find((user) => user.id === userId);
-  console.log(selectedUser);
-
-  if (!selectedUser) {
+  if (!user) {
     return <div>loading...</div>;
   }
-
   return (
     <>
-      <UserCard selectedUser={selectedUser} />
-      <Link href="/">Back to all</Link>
+      <UserCard selectedUser={user} />
+      <Link href="/users">Back to all</Link>
     </>
   );
 }
