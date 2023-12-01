@@ -14,12 +14,25 @@ const fetcher = async (url) => {
   return res.json();
 };
 
+
+function handleAddUser(newUser) {
+  setUser([{ id: uid(), date, ...newUser }, ...users]);
+}
+
+
 export default function userOverview() {
+  // const [users, setUsers] = useLocalStorageState("users", {
+  //   defaultValue: users,
+  // });
+  // const [filter, setFilter] = useLocalStorageState("filter", {
+  //   defaultValue: "all",
+  // });
+
+
   const { data: users, error, isLoading } = useSWR("/api/users", fetcher);
   if (error) return <p>{error.message}</p>;
   if (isLoading) return <p>loading...</p>;
 
-  console.log(users);
 
   if (!users) {
     return <div>loading...</div>;
